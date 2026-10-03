@@ -1,0 +1,11 @@
+main{
+    height: calc(100dvh - 2em);
+}
+
+.h-full{
+    height: calc(100% - 2em);
+}
+
+#decodedOutputText{
+    word-break: break-word;
+}

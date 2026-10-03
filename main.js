@@ -1,272 +1,256 @@
-CARACTERES = {
-    "_a" : 0b000000, 0b000000 : "a"  ,
-    "_b" : 0b000001, 0b000001 : "b"  ,
-    "_c" : 0b000010, 0b000010 : "c"  ,
-    "_d" : 0b000011, 0b000011 : "d"  ,
-    "_e" : 0b000100, 0b000100 : "e"  ,
-    "_f" : 0b000101, 0b000101 : "f"  ,
-    "_g" : 0b000110, 0b000110 : "g"  ,
-    "_h" : 0b000111, 0b000111 : "h"  ,
-    "_i" : 0b001000, 0b001000 : "i"  ,
-    "_j" : 0b001001, 0b001001 : "j"  ,
-    "_k" : 0b001010, 0b001010 : "k"  ,
-    "_l" : 0b001011, 0b001011 : "l"  ,
-    "_m" : 0b001100, 0b001100 : "m"  ,
-    "_n" : 0b001101, 0b001101 : "n"  ,
-    "_ñ" : 0b001110, 0b001110 : "ñ"  ,
-    "_o" : 0b001111, 0b001111 : "o"  ,
-    "_p" : 0b010000, 0b010000 : "p"  ,
-    "_q" : 0b010001, 0b010001 : "q"  ,
-    "_r" : 0b010010, 0b010010 : "r"  ,
-    "_s" : 0b010011, 0b010011 : "s"  ,
-    "_t" : 0b010100, 0b010100 : "t"  ,
-    "_u" : 0b010101, 0b010101 : "u"  ,
-    "_v" : 0b010110, 0b010110 : "v"  ,
-    "_w" : 0b010111, 0b010111 : "w"  ,
-    "_x" : 0b011000, 0b011000 : "x"  ,
-    "_y" : 0b011001, 0b011001 : "y"  ,
-    "_z" : 0b011010, 0b011010 : "z"  ,
-    "_ " : 0b011011, 0b011011 : " "  ,
-    "_0" : 0b011100, 0b011100 : "0"  ,
-    "_1" : 0b011101, 0b011101 : "1"  ,
-    "_2" : 0b011110, 0b011110 : "2"  ,
-    "_3" : 0b011111, 0b011111 : "3"  ,
-    "_4" : 0b100000, 0b100000 : "4"  ,
-    "_5" : 0b100001, 0b100001 : "5"  ,
-    "_6" : 0b100010, 0b100010 : "6"  ,
-    "_7" : 0b100011, 0b100011 : "7"  ,
-    "_8" : 0b100100, 0b100100 : "8"  ,
-    "_9" : 0b100101, 0b100101 : "9"  ,
-    "_." : 0b100110, 0b100110 : "."  ,
-    "_," : 0b100111, 0b100111 : ","  ,
-    "_;" : 0b101000, 0b101000 : ";"  ,
-    "_:" : 0b101001, 0b101001 : ":"  ,
-    "_(" : 0b101010, 0b101010 : "("  ,
-    "_)" : 0b101011, 0b101011 : ")"  ,
-    "_/" : 0b101100, 0b101100 : "/"  ,
-    "_-" : 0b101101, 0b101101 : "-"  ,
-    "_+" : 0b101110, 0b101110 : "+"  ,
-    "_*" : 0b101111, 0b101111 : "*"  ,
-    "_=" : 0b110000, 0b110000 : "="  ,
-    "_$" : 0b110001, 0b110001 : "$"  ,
-    "_@" : 0b110010, 0b110010 : "@"  ,
-    "_#" : 0b110011, 0b110011 : "#"  ,
-    "_^" : 0b110100, 0b110100 : "^"  ,
-    "_?" : 0b110101, 0b110101 : "?"  ,
-    "_!" : 0b110110, 0b110110 : "!"  ,
-    "_&" : 0b110111, 0b110111 : "&"  ,
-    "__" : 0b111000, 0b111000 : "_"  ,
-    '_"' : 0b111001, 0b111001 : '"'  ,
-    '_{' : 0b111010, 0b111010 : '{'  ,
-    '_}' : 0b111011, 0b111011 : '}'  ,
-    '_|' : 0b111100, 0b111100 : '|'  ,
-    '_\n' : 0b111101, 0b111101 : '\n'  ,
-    '_\t' : 0b111110, 0b111110 : '\t'  ,
-    '__MAYUS' : 0b111111, 0b111111 : "__MAYUS",
-}
-
-const BOOLS = {
-    // true : " ", " " : true, // U+2800 BRAILLE PATTERN BLANK />>/ U+2800 PATRÓN EN BLANCO BRAILLE //
-    true : "⁢", "⁢" : true,   // U+2062 INVISIBLE TIMES   />>/ U+2062 TIEMPOS INVISIBLES      //
-    false : "‍", "‍" : false, // U+200D ZERO WIDTH JOINER />>/ U+200D Conector de ancho cero  //
-}
-
 const INVISIBLE_CHARS = {
-    "0"  : "឴", // U+17B4 KHMER VOWEL INHERENT AQ
-    "1"  : "឵", // U+17B5 KHMER VOWEL INHERENT AA
-    "2"  : "᠋", // U+180B MONGOLIAN FREE VARIATION SELECTOR ONE
-    "3"  : "᠌", // U+180C MONGOLIAN FREE VARIATION SELECTOR TWO
-    "4"  : "᠍", // U+180D MONGOLIAN FREE VARIATION SELECTOR THREE
-    "5"  : "᠎", // U+180E MONGOLIAN VOWEL SEPARATOR
-    "6"  : "‌", // U+200C ZERO WIDTH NON-JOINER
-    "7"  : "‍", // U+200D ZERO WIDTH JOINER
-    "8"  : "⁠", // U+2060 WORD JOINER
-    "9"  : "⁡", // U+2061 FUNCTION APPLICATION
-    "A"  : "⁢", // U+2062 INVISIBLE TIMES
-    "B"  : "⁣", // U+2063 INVISIBLE SEPARATOR
-    "C"  : "⁤", // U+2064 INVISIBLE PLUS
-    "D"  : "⁥", // U+2065 Invisible operators - undefined
-    "E"  : "⁪", // U+206A INHIBIT SYMMETRIC SWAPPING
-    "F"  : "⁫", // U+206B ACTIVATE SYMMETRIC SWAPPING
+    0  : "឴", // U+17B4 KHMER VOWEL INHERENT AQ
+    1  : "឵", // U+17B5 KHMER VOWEL INHERENT AA
+    2  : "᠋", // U+180B MONGOLIAN FREE VARIATION SELECTOR ONE
+    3  : "᠌", // U+180C MONGOLIAN FREE VARIATION SELECTOR TWO
+    4  : "᠍", // U+180D MONGOLIAN FREE VARIATION SELECTOR THREE
+    5  : "᠎", // U+180E MONGOLIAN VOWEL SEPARATOR
+    6  : "‌", // U+200C ZERO WIDTH NON-JOINER
+    7  : "‍", // U+200D ZERO WIDTH JOINER
+    8  : "⁠", // U+2060 WORD JOINER
+    9  : "⁡", // U+2061 FUNCTION APPLICATION
+    10  : "⁢", // U+2062 INVISIBLE TIMES
+    11  : "⁣", // U+2063 INVISIBLE SEPARATOR
+    12  : "⁤", // U+2064 INVISIBLE PLUS
+    13  : "⁥", // U+2065 Invisible operators - undefined
+    14  : "⁪", // U+206A INHIBIT SYMMETRIC SWAPPING
+    15  : "⁫", // U+206B ACTIVATE SYMMETRIC SWAPPING
+}
+const REVERSE_INVISIBLE_CHAR = {}
+for (let key in INVISIBLE_CHARS){
+    REVERSE_INVISIBLE_CHAR[INVISIBLE_CHARS[key]] = key
 }
 
 const HEADER = {
-    START : ".```[Hidden Message]```",
+    START : ".",
     END : "."
 }
 
-function hide_char(char){
-    if (typeof char != "string") throw "hide_char > El parametro #1 no es un texto";
-    if (char.length != 1) throw "El paramentro #1 no es un caracter";
-    if (!("_"+char in CARACTERES)) return ""; // ELIMINA LOS CARACTERES QUE NO COMPRENDA
-    const code = CARACTERES["_"+char]
-    return code
-}
+// De carácter a su código numérico
+const caracterACodigo = (char) => Number(char.charCodeAt(0));
+// De código numérico a carácter
+const codigoACaracter = (num) => String.fromCharCode(num);
 
-function isUpper(char){
-    if (typeof char != "string") throw "hide_char > El parametro #1 no es un texto";
-    if (char.length != 1) throw "El paramentro #1 no es un caracter";
-    const UP = "ABCDEFGHIJKLMNÑOPQRSTUVWXYZ";
-    for (let i=0; i<UP.length; i++){
-        if (char == UP[i]) return true;
+function setByteBool(bool, pos){
+    if (bool){
+        return 1 << pos
     }
-    return false
+    return 0
 }
 
-function normalizar(char){
-    if (char == "á") return "a";
-    if (char == "é") return "e";
-    if (char == "í") return "i";
-    if (char == "ó") return "o";
-    if (char == "ú") return "u";
-    if (char == "Á") return "A";
-    if (char == "É") return "E";
-    if (char == "Í") return "I";
-    if (char == "Ó") return "O";
-    if (char == "Ú") return "U";
-    if (char == "¿") return "?";
-    if (char == "¡") return "!";
-    if (char == "¡") return "!";
-    return char;
+function getByteBool(byte, pos){
+    return (byte >> pos) & 1
 }
 
-function isShifteable(char){
-    if (char == "á") return true;
-    if (char == "é") return true;
-    if (char == "í") return true;
-    if (char == "ó") return true;
-    if (char == "ú") return true;
-    if (char == "Á") return true;
-    if (char == "É") return true;
-    if (char == "Í") return true;
-    if (char == "Ó") return true;
-    if (char == "Ú") return true;
-    if (char == "¿") return true;
-    if (char == "!") return true;
-    return false;
-}
 
-function shift(char){
-    if (char == "a") char = "0"
-    if (char == "e") char = "1"
-    if (char == "i") char = "2"
-    if (char == "o") char = "3"
-    if (char == "u") char = "4"
-    if (char == "A") char = "5"
-    if (char == "E") char = "6"
-    if (char == "I") char = "7"
-    if (char == "O") char = "8"
-    if (char == "U") char = "9"
-    if (char == "?") char = "?";
-    if (char == "!") char = "!";
-    return char
-}
-
-function change_character(byte){
-    if (byte >= 0 && byte <= 0b011010){
-        return CARACTERES[byte].toUpperCase()
-    }
-    if (byte == CARACTERES["_0"]) return "á";
-    if (byte == CARACTERES["_1"]) return "é";
-    if (byte == CARACTERES["_2"]) return "í";
-    if (byte == CARACTERES["_3"]) return "ó";
-    if (byte == CARACTERES["_4"]) return "ú";
-    if (byte == CARACTERES["_5"]) return "Á";
-    if (byte == CARACTERES["_6"]) return "É";
-    if (byte == CARACTERES["_7"]) return "Í";
-    if (byte == CARACTERES["_8"]) return "Ó";
-    if (byte == CARACTERES["_9"]) return "Ú";
-    if (byte == CARACTERES["_?"]) return "¿";
-    if (byte == CARACTERES["_!"]) return "¡";
-    
-    return CARACTERES[byte]
-}
-
-function convert_string(text){
+function convert_string(text, adicional=""){
     let output = ""
-    let mode = 0; //TODO: HACER QUE FUNCIONES ESTA VARIABLE
-    if (typeof text != "string") throw "convert_string > El parametro #1 no es un texto";
-    text = String(mode) + text
+    
+    let header_text = "" // EL HEADER DEBE SER DE 8 BYTES SOLAMENTE
 
-    for (let i = 0; i<text.length; i++){
-        let char = normalizar( text[i] );
-        if (isShifteable(text[i])) char = shift(char);
-        char = char.toLowerCase()
-        let hide = hide_char(char);
-        const nm = hide
-        let change = ""
 
-        if (isUpper(text[i])) change += BOOLS[true]+BOOLS[true]+BOOLS[true]+BOOLS[true]+BOOLS[true]+BOOLS[true]
-        if (isShifteable(text[i])) change += BOOLS[true]+BOOLS[true]+BOOLS[true]+BOOLS[true]+BOOLS[true]+BOOLS[true]
-
-        for (let j=0; j<6; j++){
-            change += BOOLS[Boolean(hide & 0b1 == 0x1)]
-            hide = hide >> 1;
-        }
-
-        output += change
-        // console.log(char, ",", nm, " - ", change)
+    const header = {
+        "version" : 0,
+        "modo" : 0,
+        "bools" : {
+            "cifrado" : false,
+            "comprimido" : false,
+            "2" : false,
+            "3" : false,
+            "4" : false,
+            "5" : false,
+            "6" : false,
+            "7" : false,
+        },
+        "integrity" : [0, 0, 0]
     }
-    return HEADER["START"]+output+HEADER["END"];
+
+    const BOOLS = 
+        setByteBool(header["bools"]["cifrado"], 0)    |
+        setByteBool(header["bools"]["comprimido"], 1) |
+        setByteBool(header["bools"]["2"], 2) |
+        setByteBool(header["bools"]["3"], 3) |
+        setByteBool(header["bools"]["4"], 4) |
+        setByteBool(header["bools"]["5"], 5) |
+        setByteBool(header["bools"]["6"], 6) |
+        setByteBool(header["bools"]["7"], 7) 
+
+    header_text += codigoACaracter(27) // CARACTER DE INICIO DEL HEADER
+    header_text += codigoACaracter(header["version"] & 0b00001111) // VERSION
+    header_text += codigoACaracter((header["version"] & 0b11110000 ) >> 4) // VERSION
+    header_text += codigoACaracter(header["modo"]) // MODO
+    header_text += codigoACaracter(BOOLS) // BOOLS [ CIFRADO ] [ COMPRIMIDO ] [] [] [] [] [] []
+    header_text += codigoACaracter(header["integrity"][0]) // VERIFICACION DE INTEGRIDAD
+    header_text += codigoACaracter(header["integrity"][1]) // VERIFICACION DE INTEGRIDAD
+    header_text += codigoACaracter(header["integrity"][2]) // VERIFICACION DE INTEGRIDAD
+
+    text = header_text + text;
+
+    const encoder = new TextEncoder();
+    const bytes = encoder.encode(text);
+
+    for (let i=0; i<bytes.length; i++){
+        // const char = text[i];
+        // const byte = caracterACodigo(char);
+        const byte = bytes[i]
+        const part1 = byte & 0b00001111;
+        const part2 = (byte & 0b11110000 ) >> 4;
+        const invisible1 = INVISIBLE_CHARS[part1];
+        const invisible2 = INVISIBLE_CHARS[part2];
+
+        output += invisible1 + invisible2
+    }
+
+    return HEADER["START"]+adicional+INVISIBLE_CHARS[15]+output+HEADER["END"];
 }
 
+function deconvert_extract_header(header_hide){
+    if (typeof header_hide != "string") throw "El parametro #1 debe ser un string";
+    if (header_hide.length != 16) throw "El header es incorrecto (Tamaño invalido)";
+    const header = {
+        "version" : 0,
+        "modo" : 0,
+        "bools" : {
+            "cifrado" : false,
+            "comprimido" : false,
+            "2" : false,
+            "3" : false,
+            "4" : false,
+            "5" : false,
+            "6" : false,
+            "7" : false,
+        },
+        "integrity" : []
+    }
+    let header_text = ""
+    for (let i=0; i<header_hide.length; i+=2){
+        const char1 = header_hide[i];
+        const char2 = header_hide[i+1];
+        const byte1 = REVERSE_INVISIBLE_CHAR[char1];
+        const byte2 = REVERSE_INVISIBLE_CHAR[char2];
+        const byte8 = byte1 | (byte2 << 4);
+        const char = codigoACaracter(byte8);
+        if (Math.round(i/2) == 0) console.log(byte8); //TODO: SE DEBERA VERIFICAR QUE EL HEADER ESTA CORRECTO
+        if (Math.round(i/2) == 1) header["version"] = byte8;
+        if (Math.round(i/2) == 2) header["version"] |= byte8 << 4
+        if (Math.round(i/2) == 3) header["modo"] = byte8;
+        if (Math.round(i/2) == 4) {
+            header["bools"]["cifrado"] = getByteBool(byte8, 0);
+            header["bools"]["comprimido"] = getByteBool(byte8, 1);
+            header["bools"]["2"] = getByteBool(byte8, 2);
+            header["bools"]["3"] = getByteBool(byte8, 3);
+            header["bools"]["4"] = getByteBool(byte8, 4);
+            header["bools"]["5"] = getByteBool(byte8, 5);
+            header["bools"]["6"] = getByteBool(byte8, 6);
+            header["bools"]["7"] = getByteBool(byte8, 7);
+        };
+        if (Math.round(i/2) == 5) header["integrity"].push(byte8);
+        if (Math.round(i/2) == 6) header["integrity"].push(byte8);
+        if (Math.round(i/2) == 7) header["integrity"].push(byte8);
 
+        header_text += char;
+    }
+    return header
+}
 
 function deconvert_string(text_hide){
-    let output = ""
+    // let output = ""
     if (typeof text_hide != "string") throw "convert_string > El parametro #1 no es un texto";
-    if (text_hide[0] != "." || text_hide[text_hide.length-1] != ".") throw "El texto es incorrecto";
-    
     if (!text_hide.startsWith(HEADER["START"]) || !text_hide.endsWith(HEADER["END"])) throw "El texto es incorrecto";
-    
     text_hide = text_hide.substring(HEADER["START"].length, text_hide.length-HEADER["END"].length)
-    
-    let mayus = false;
-    let shift = false
-    const cantidad_de_letras = Math.round(text_hide.length / 6)
-
-    let marca = 0;
-    for (let i=0; i<cantidad_de_letras; i++){
-        let value = 0
-        for (let j=0; j<6; j++){
-            const char = text_hide[ i * 6 + (5 - j) ]
-            if (BOOLS[char] === true){
-                value = value | 1;
-            }
-            value = value << 1;
-            marca += 1;
+    let ok = false;
+    for (let i=0; i<text_hide.length-1; i++){
+        if (text_hide[i] == INVISIBLE_CHARS[15]){
+            text_hide = text_hide.substring(i+1)
+            ok = true;
+            break;
         }
-        value = value >> 1;
-        if (CARACTERES[value] == "__MAYUS"){
-            if (mayus) shift = true;
-            mayus = true;
-            continue;
-        }
-        let newChar = String(CARACTERES[value])
-        // if (shift){
-        //     newChar = change_character(value)
-        //     shift = false;
-        // }
-        if (mayus){
-            newChar = change_character(value)
-            mayus = false;
-        }
-        // console.log(value, " : ", newChar)
-        output += newChar
     }
-    const modo = output[0] //TODO: HACER QUE FUNCIONES ESTA VARIABLE
+    if (!ok) throw "El texto es incorrecto";
 
+    const header_hide = text_hide.substring(0, 16);
+    text_hide = text_hide.substring(16)
 
-    return output.substring(1)
+    const header = deconvert_extract_header(header_hide)
+    
+    //TODO: HACER QUE SE PUEDA ANALIZAR EL HEADER PARA SABER COMO DECIFRAR EL TEXTO CORRECTAMENTE
+    const bytes = []
+    for (let i=0; i<text_hide.length; i+=2){
+        const char1 = text_hide[i];
+        const char2 = text_hide[i+1];
+        const byte1 = REVERSE_INVISIBLE_CHAR[char1];
+        const byte2 = REVERSE_INVISIBLE_CHAR[char2];
+        const byte8 = byte1 | (byte2 << 4);
+        bytes.push(byte8)
+        // const char = codigoACaracter(byte8);
+        // output += char;
+    }
+
+    const decoder = new TextDecoder();
+    return decoder.decode(new Uint8Array(bytes));
+    // return output
 }
 
 function main(){
-    // const h = convert_string("Hola, ¿Cómo Estás?")
-    // const h = convert_string("Black clover, el besto shonen.")
-    // console.log("out: ",h)
+    // const texto = "Black clover, el besto shonen.";
+    // console.log("texto a tratar: \""+texto+"\"  l: ",texto.length)
+    // const h = convert_string(texto, "[HIDDEN MESSAGE]")
+    // console.log("out: ",h ,"l:" ,h.length)
     // const d = deconvert_string(h)
     // console.log("in: ",d)
 }
+
+function btn_encapsular_mensaje(){
+    const secret = document.getElementById('secretInput').value.trim();
+    const cover = document.getElementById('coverInput').value.trim() || "[Mensaje oculto]";
+    const display = document.getElementById('encodedOutputDisplay');
+    const copyBtn = document.getElementById('copyBtn');
+
+    if (!secret) {
+        showToast("Ingresa un mensaje secreto para ocultar", "fa-triangle-exclamation", "text-amber-400");
+        return;
+    }
+
+    currentEncodedMessage = convert_string(secret, cover)
+    // currentEncodedMessage = hideText(cover, secret);
+
+    display.innerText = currentEncodedMessage;
+    display.classList.remove('italic', 'text-slate-400', 'dark:text-slate-500');
+    display.classList.add('text-brand-600', 'dark:text-indigo-400', 'font-semibold');
+
+    // Enable copy button
+    copyBtn.disabled = false;
+    copyBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+    showToast("¡Mensaje ocultado con éxito!");
+}
+
+function btn_revelar_mensaje(){
+    const encodedInput = document.getElementById('revealInput').value;
+    const outputText = document.getElementById('decodedOutputText');
+    const toggleBtn = document.getElementById('toggleVisibleBtn');
+
+    if (!encodedInput) {
+        showToast("Pega un texto para analizar", "fa-triangle-exclamation", "text-amber-400");
+        return;
+    }
+
+    const revealed = deconvert_string(encodedInput);
+
+    if (revealed) {
+        currentDecodedSecret = revealed;
+        isSecretVisible = true;
+        updateDecodedView();
+        toggleBtn.classList.remove('hidden');
+        showToast("¡Mensaje secreto encontrado!");
+    } else {
+        currentDecodedSecret = "";
+        isSecretVisible = false;
+        outputText.innerText = "No se encontraron mensajes ocultos en este texto.";
+        outputText.className = "text-sm font-medium text-red-500 dark:text-red-400 text-center";
+        toggleBtn.classList.add('hidden');
+    }
+}
+
 
 const input = document.getElementById("input");
 const out = document.getElementById("out");
